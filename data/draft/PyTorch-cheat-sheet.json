@@ -1,1 +1,255 @@
-
+{
+  "contents": [
+    {
+      "title": "Distributed Training",
+      "items": [
+        {
+          "definition": "Import necessary modules for distributed training",
+          "code": "import torch.distributed as dist\nfrom torch.multiprocessing import Process"
+        },
+        {
+          "definition": "Check for distributed and multiprocessing documentation",
+          "code": "See distributed and multiprocessing"
+        }
+      ]
+    },
+    {
+      "title": "Tensors",
+      "items": [
+        {
+          "definition": "Tensor Creation - Random",
+          "code": "x = torch.randn(*size)"
+        },
+        {
+          "definition": "Tensor Creation - Ones/Zeros",
+          "code": "x = torch.ones(*size)\nx = torch.zeros(*size)"
+        },
+        {
+          "definition": "Tensor Creation from List/Array",
+          "code": "x = torch.tensor(L)"
+        },
+        {
+          "definition": "Clone a Tensor",
+          "code": "y = x.clone()"
+        },
+        {
+          "definition": "Disable Autograd Tracking",
+          "code": "with torch.no_grad():\n    # Code that doesn't require autograd tracking"
+        },
+        {
+          "definition": "Set 'requires_grad' for Autograd",
+          "code": "requires_grad=True  # Set this argument to True to track computation history"
+        },
+        {
+          "definition": "See more tensor operations",
+          "code": "See tensor"
+        }
+      ]
+    },
+    {
+      "title": "Dimensionality",
+      "items": [
+        {
+          "definition": "Get Tensor Size",
+          "code": "x.size()  # Returns a tuple-like object of dimensions"
+        },
+        {
+          "definition": "Concatenate Tensors",
+          "code": "x = torch.cat(tensor_seq, dim=0)  # Concatenates tensors along the specified dimension"
+        },
+        {
+          "definition": "Reshape a Tensor",
+          "code": "y = x.view(a, b, ...)  # Reshapes x into the specified size"
+        },
+        {
+          "definition": "Transpose a Tensor",
+          "code": "y = x.transpose(a, b)  # Swaps dimensions a and b"
+        },
+        {
+          "definition": "Permute Tensor Dimensions",
+          "code": "y = x.permute(*dims)  # Permutes dimensions based on dims"
+        },
+        {
+          "definition": "Add a New Axis to a Tensor",
+          "code": "y = x.unsqueeze(dim)  # Adds a new axis at the specified dimension"
+        },
+        {
+          "definition": "Remove Dimensions with Size 1",
+          "code": "y = x.squeeze()  # Removes all dimensions of size 1"
+        },
+        {
+          "definition": "Remove a Specific Dimension with Size 1",
+          "code": "y = x.squeeze(dim=1)  # Removes the specified dimension of size 1"
+        },
+        {
+          "definition": "See more tensor operations",
+          "code": "See tensor"
+        }
+      ]
+    },
+    {
+      "title": "Algebra",
+      "items": [
+        {
+          "definition": "Matrix Multiplication",
+          "code": "ret = A.mm(B)  # Matrix multiplication"
+        },
+        {
+          "definition": "Matrix-Vector Multiplication",
+          "code": "ret = A.mv(x)  # Matrix-vector multiplication"
+        },
+        {
+          "definition": "Matrix Transpose",
+          "code": "x = x.t()  # Matrix transpose"
+        },
+        {
+          "definition": "See more math operations",
+          "code": "See math operations"
+        }
+      ]
+    },
+    {
+      "title": "GPU Usage",
+      "items": [
+        {
+          "definition": "Check for GPU Availability",
+          "code": "torch.cuda.is_available"
+        },
+        {
+          "definition": "Move Tensor Data to GPU",
+          "code": "x = x.cuda()  # Move data from CPU to GPU"
+        },
+        {
+          "definition": "Move Tensor Data to CPU",
+          "code": "x = x.cpu()  # Move data from GPU to CPU"
+        },
+        {
+          "definition": "Device Agnostic Code",
+          "code": "if not args.disable_cuda and torch.cuda.is_available():\n    args.device = torch.device('cuda')\nelse:\n    args.device = torch.device('cpu')\nnet.to(device)  # Recursively convert parameters and buffers to device-specific tensors\nx = x.to(device)  # Copy tensors to a device (GPU or CPU)"
+        },
+        {
+          "definition": "See more CUDA operations",
+          "code": "See cuda"
+        }
+      ]
+    },
+    {
+      "title": "Deep Learning",
+      "items": [
+        {
+          "definition": "Fully Connected Layer",
+          "code": "nn.Linear(m, n)  # Fully connected layer from m to n units"
+        },
+        {
+          "definition": "Convolutional Layer (1D, 2D, 3D)",
+          "code": "nn.ConvXd(m, n, s)  # X-dimensional conv layer from m to n channels with kernel size s"
+        },
+        {
+          "definition": "Pooling Layer (1D, 2D, 3D)",
+          "code": "nn.MaxPoolXd(s)  # X-dimensional pooling layer with kernel size s"
+        },
+        {
+          "definition": "Batch Normalization Layer",
+          "code": "nn.BatchNormXd  # Batch norm layer"
+        },
+        {
+          "definition": "Recurrent Layers (RNN, LSTM, GRU)",
+          "code": "nn.RNN/LSTM/GRU  # Recurrent layers"
+        },
+        {
+          "definition": "Dropout Layer (1D, 2D)",
+          "code": "nn.Dropout(p=0.5, inplace=False)  # Dropout layer for any dimensional input\nnn.Dropout2d(p=0.5, inplace=False)  # 2-dimensional channel-wise dropout"
+        },
+        {
+          "definition": "Embedding Layer",
+          "code": "nn.Embedding(num_embeddings, embedding_dim)  # Mapping from indices to embedding vectors (tensor-wise)"
+        },
+        {
+          "definition": "See more neural network modules",
+          "code": "See nn"
+        }
+      ]
+    },
+    {
+      "title": "Loss Functions",
+      "items": [
+        {
+          "definition": "Loss Functions (Examples)",
+          "code": "nn.X  # X can be L1Loss, MSELoss, CrossEntropyLoss, CTCLoss, NLLLoss, PoissonNLLLoss, KLDivLoss, BCELoss, BCEWithLogitsLoss, MarginRankingLoss, HingeEmbeddingLoss, MultiLabelMarginLoss, SmoothL1Loss, SoftMarginLoss, MultiLabelSoftMarginLoss, CosineEmbeddingLoss, MultiMarginLoss, or TripletMarginLoss"
+        },
+        {
+          "definition": "See more loss functions",
+          "code": "See loss functions"
+        }
+      ]
+    },
+    {
+      "title": "Activation Functions",
+      "items": [
+        {
+          "definition": "Activation Functions (Examples)",
+          "code": "nn.X  # X can be ReLU, ReLU6, ELU, SELU, PReLU, LeakyReLU, RReLu, CELU, GELU, Threshold, Hardshrink, HardTanh, Sigmoid, LogSigmoid, Softplus, SoftShrink, Softsign, Tanh, TanhShrink, Softmin, Softmax, Softmax2d, LogSoftmax, or AdaptiveSoftmaxWithLoss"
+        },
+        {
+          "definition": "See more activation functions",
+          "code": "See activation functions"
+        }
+      ]
+    },
+    {
+      "title": "Optimizers",
+      "items": [
+        {
+          "definition": "Create Optimizer",
+          "code": "opt = optim.x(model.parameters(), ...)  # Create optimizer"
+        },
+        {
+          "definition": "Update Weights",
+          "code": "opt.step()  # Update weights"
+        },
+        {
+          "definition": "Optimizers (Examples)",
+          "code": "optim.X  # X can be SGD, Adadelta, Adagrad, Adam, AdamW, SparseAdam, Adamax, ASGD, LBFGS, RMSprop, or Rprop"
+        },
+        {
+          "definition": "See more optimizers",
+          "code": "See optimizers"
+        }
+      ]
+    },
+    {
+      "title": "Learning Rate Scheduling",
+      "items": [
+        {
+          "definition": "Create Learning Rate Scheduler",
+          "code": "scheduler = optim.X(optimizer, ...)  # Create LR scheduler"
+        },
+        {
+          "definition": "Update Learning Rate",
+          "code": "scheduler.step()  # Update LR after optimizer updates weights"
+        },
+        {
+          "definition": "Learning Rate Schedulers (Examples)",
+          "code": "optim.lr_scheduler.X  # X can be LambdaLR, MultiplicativeLR, StepLR, MultiStepLR, ExponentialLR, CosineAnnealingLR, ReduceLROnPlateau, CyclicLR, OneCycleLR, or CosineAnnealingWarmRestarts"
+        },
+        {
+          "definition": "See more LR schedulers",
+          "code": "See learning rate scheduler"
+        }
+      ]
+    },
+    {
+      "title": "Data Utilities",
+      "items": [
+        {
+          "definition": "Datasets (Examples)",
+          "code": "Dataset  # Abstract class representing a dataset\nTensorDataset  # Labelled dataset in the form of tensors\nConcatDataset  # Concatenation of datasets\nSee datasets"
+        },
+        {
+          "definition": "Dataloaders and DataSamplers (Examples)",
+          "code": "DataLoader(dataset, batch_size=1, ...)  # Loads data batches agnostic of the structure of individual data points\nsampler.Sampler(dataset, ...)  # Abstract class dealing with ways to sample from a dataset\nsampler.XSampler where ...  # Sequential, Random, SubsetRandom, WeightedRandom, Batch, Distributed"
+        }
+      ]
+    }
+  ]
+}
